@@ -55,13 +55,19 @@ class Solution {
 				}
 				else if (l1 == nullptr)
 				{
-					l2->val += carry;
-					return l2;
+					int val = l2->val + carry;
+					int nextCarry = val / 10;
+					ListNode* result = new ListNode(val % 10);
+					result->next = addTwoNumbersCarry( l2->next, nullptr, nextCarry);
+					return result;
 				}
 				else if (l2 == nullptr)
 				{
-					l1->val += carry;
-					return l1;
+					int val = l1->val + carry;
+					int nextCarry = val / 10;
+					ListNode* result = new ListNode(val % 10);
+					result->next = addTwoNumbersCarry(l1->next, nullptr, nextCarry);
+					return result;
 				}
 				else
 				{
