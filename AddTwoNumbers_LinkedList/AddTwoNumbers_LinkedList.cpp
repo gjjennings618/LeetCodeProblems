@@ -18,66 +18,44 @@ class Solution {
 	public:
 		ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) 
 		{
-			addTwoNumbersCarry(l1, l2, 0);
+			return addTwoNumbersCarry(l1, l2, 0);
 		}
 
 		ListNode* addTwoNumbersCarry(ListNode* l1, ListNode* l2, int carry)
 		{
-			if (carry == 0) 
-			{
-				if (l1 == nullptr && l2 == nullptr && carry == 0)
+			int sum = 0;
+			ListNode* l1Next = nullptr;
+			ListNode* l2Next = nullptr;
+
+			if (l1 == nullptr && l2 == nullptr) {
+				if (carry == 0)
 				{
 					return nullptr;
 				}
-				else if (l1 == nullptr)
-				{
-					return l2;
-				}
-				else if (l2 == nullptr)
-				{
-					return l1;
-				}
 				else
-				{
-					int val = l1->val + l2->val;
-					int nextCarry = val / 10;
-					ListNode* result = new ListNode(val % 10 + carry);
-					result->next = addTwoNumbersCarry(l1->next, l2->next, nextCarry);
-					return result;
-				}
-			}
-			else 
-			{
-				if (l1 == nullptr && l2 == nullptr)
 				{
 					ListNode* result = new ListNode(carry);
 					return result;
 				}
-				else if (l1 == nullptr)
-				{
-					int val = l2->val + carry;
-					int nextCarry = val / 10;
-					ListNode* result = new ListNode(val % 10);
-					result->next = addTwoNumbersCarry( l2->next, nullptr, nextCarry);
-					return result;
-				}
-				else if (l2 == nullptr)
-				{
-					int val = l1->val + carry;
-					int nextCarry = val / 10;
-					ListNode* result = new ListNode(val % 10);
-					result->next = addTwoNumbersCarry(l1->next, nullptr, nextCarry);
-					return result;
-				}
-				else
-				{
-					int val = l1->val + l2->val + carry;
-					int nextCarry = val / 10;
-					ListNode* result = new ListNode(val % 10);
-					result->next = addTwoNumbersCarry(l1->next, l2->next, nextCarry);
-					return result;
-				}
 			}
+
+			if (l1 != nullptr) 
+			{
+				l1Next = l1->next;
+				sum += l1->val;
+			} 
+
+			if (l2 != nullptr)
+			{
+				l2Next = l2->next;
+				sum += l2->val;
+			}
+
+			sum += carry;
+			int nextCarry = sum / 10;
+			ListNode* result = new ListNode(sum%10);
+			result->next = addTwoNumbersCarry(l1Next, l2Next, nextCarry);
+			return result;
 		}
 };
 
