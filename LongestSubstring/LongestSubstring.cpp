@@ -10,28 +10,49 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) 
     {
-        unordered_map<char, int> map;
+        string longest_substring = "";
+        unordered_map<char, int> char_counter;
+        unordered_map<char, int> index_tracker;
+
         string substr = "";
-        for (char c : s)
+
+
+        for (int i = 0; i < s.length(); i++)
         {
-            if (map.find(c) == map.end()) 
+            char c = s[i];
+            cout << "char: " << c << ", index: " << i << "substr: " << substr << endl;
+            // If cannot find c in char counter
+            if (char_counter.find(c) == char_counter.end()) 
             {
-                map.insert(make_pair(c, 0));
+                char_counter.insert(make_pair(c, 0));
+                index_tracker.insert(make_pair(c, i));
                 substr += c;
             }
             else 
             {
-                return substr.length();
+                //Iterate past the duplicate char
+                i = index_tracker[c + 1];
+                index_tracker[c] = i;
+                substr = c;
+
+                if (substr.length() > longest_substring.length()) 
+                {
+                    longest_substring = substr;
+                }
             }
         }
 
-        return substr.length();
+        return longest_substring.length();
     }
 };
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Solution s;
+
+    s.lengthOfLongestSubstring("abcabcbb");
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
