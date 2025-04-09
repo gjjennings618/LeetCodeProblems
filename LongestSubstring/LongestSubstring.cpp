@@ -23,7 +23,6 @@ public:
             {
                 index_tracker.insert(make_pair(c, i));
                 substr += c;
-                cout << substr << endl;
                 if (substr.length() > longest_substring.length())
                 {
                     longest_substring = substr;
