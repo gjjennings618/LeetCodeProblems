@@ -16,11 +16,10 @@ public:
 
         string substr = "";
 
-
         for (int i = 0; i < s.length(); i++)
         {
             char c = s[i];
-            cout << "char: " << c << ", index: " << i << "substr: " << substr << endl;
+            cout << "char: " << c << ", index: " << i << " substr: " << substr << endl;
             // If cannot find c in char counter
             if (char_counter.find(c) == char_counter.end()) 
             {
@@ -30,15 +29,22 @@ public:
             }
             else 
             {
+                cout << "found " << c << " in dict" << endl;
+
+                //reset char_counter
+                char_counter.clear();
+                char_counter.insert(make_pair(c, 0));
+
                 //Iterate past the duplicate char
-                i = index_tracker[c + 1];
+                i = index_tracker[c] + 1;
                 index_tracker[c] = i;
-                substr = c;
 
                 if (substr.length() > longest_substring.length()) 
                 {
                     longest_substring = substr;
                 }
+
+                substr = c;
             }
         }
 
@@ -50,7 +56,7 @@ int main()
 {
     Solution s;
 
-    s.lengthOfLongestSubstring("abcabcbb");
+    cout << "Final Output: " << s.lengthOfLongestSubstring("abcabcbb") << endl;
 
     return 0;
 }
