@@ -16,7 +16,7 @@ public:
 
         string substr = "";
 
-        for (int i = 0; i < s.length(); i++)
+        for (int i = 0; i < s.length(); ++i)
         {
             char c = s[i];
             // If cannot find c in char counter
@@ -25,7 +25,7 @@ public:
                 char_counter.insert(make_pair(c, 0));
                 index_tracker.insert(make_pair(c, i));
                 substr += c;
-                
+                cout << substr << endl;
                 if (substr.length() > longest_substring.length())
                 {
                     longest_substring = substr;
@@ -33,10 +33,10 @@ public:
             }
             else 
             {
-                cout << "found " << c << " in dict" << endl;
+                cout << "found duplacate: " << c << endl;
 
                 //reset to first instance
-                i = index_tracker[i];
+                i = index_tracker[c];
                 substr = "";
                 index_tracker.clear();
                 //reset char_counter
@@ -52,7 +52,13 @@ int main()
 {
     Solution s;
 
-    cout << "Final Output: " << s.lengthOfLongestSubstring("dvdf") << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("abcabcbb") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("dvdf") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("asdfasfghsfh") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("jyyuytyrew") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("asdasasassasdd") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("asxczwfsadfwessf") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("fsdfsdsdsd") << endl << endl;
 
     return 0;
 }
