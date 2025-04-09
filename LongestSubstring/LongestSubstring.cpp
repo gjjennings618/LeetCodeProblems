@@ -11,7 +11,6 @@ public:
     int lengthOfLongestSubstring(string s) 
     {
         string longest_substring = "";
-        unordered_map<char, int> char_counter;
         unordered_map<char, int> index_tracker;
 
         string substr = "";
@@ -20,9 +19,8 @@ public:
         {
             char c = s[i];
             // If cannot find c in char counter
-            if (char_counter.find(c) == char_counter.end()) 
+            if (index_tracker.find(c) == index_tracker.end()) 
             {
-                char_counter.insert(make_pair(c, 0));
                 index_tracker.insert(make_pair(c, i));
                 substr += c;
                 cout << substr << endl;
@@ -39,8 +37,6 @@ public:
                 i = index_tracker[c];
                 substr = "";
                 index_tracker.clear();
-                //reset char_counter
-                char_counter.clear();
             }
         }
 
