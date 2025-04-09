@@ -18,7 +18,7 @@ public:
         for (int i = 0; i < s.length(); ++i)
         {
             char c = s[i];
-            // If cannot find c in char counter
+            // If cannot find c in index tracker
             if (index_tracker.find(c) == index_tracker.end()) 
             {
                 index_tracker.insert(make_pair(c, i));
@@ -31,10 +31,9 @@ public:
             }
             else 
             {
-                cout << "found duplacate: " << c << endl;
-
                 //reset to first instance
                 i = index_tracker[c];
+
                 substr = "";
                 index_tracker.clear();
             }
@@ -55,6 +54,11 @@ int main()
     cout << "Final Output: " << s.lengthOfLongestSubstring("asdasasassasdd") << endl << endl;
     cout << "Final Output: " << s.lengthOfLongestSubstring("asxczwfsadfwessf") << endl << endl;
     cout << "Final Output: " << s.lengthOfLongestSubstring("fsdfsdsdsd") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("ssssssss") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring(" ") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("qwertyuiopasdfghjklzxcvbnm") << endl << endl;
+    cout << "Final Output: " << s.lengthOfLongestSubstring("qwertyuiopasdfghjklzxcvbnmm") << endl << endl;
 
     return 0;
 }
