@@ -11,3 +11,14 @@
 /LongestSubstring/LongestSubstring/x64
 LongestSubstring/x64/Debug/LongestSubstring.pdb
 /LongestSubstring/enc_temp_folder
+*.db
+*.db-shm
+*.db-wal
+/MedianOfTwoSortedArrays/.vs
+*.tlog
+*.recipe
+*.ilk
+*.enc
+*.log
+*.idb
+*.pdb
