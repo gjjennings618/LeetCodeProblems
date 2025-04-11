@@ -21,9 +21,11 @@ public:
             // Two letter unfolding
             if ((i + j) < s.length()) 
             {
-                string twoLetterUnfold = palindrome + s[j];
+                string twoLetterUnfold = palindrome + s[i + j];
+                cout << twoLetterUnfold << endl;
                 if (checkIfStringIsPalindrome(twoLetterUnfold)) 
                 {
+                    cout << "twoLetterUnfold is a palindrome"  << twoLetterUnfold << endl;
                     palindrome = twoLetterUnfold;
                 }
             }
