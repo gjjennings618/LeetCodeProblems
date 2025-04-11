@@ -19,7 +19,7 @@ public:
             int j = 1;
             
             // Two letter unfolding
-            if (i == j < s.length()) 
+            if (i = j < s.length()) 
             {
                 string twoLetterUnfold = palindrome + s[j];
                 if (checkIfStringIsPalindrome(twoLetterUnfold)) 
@@ -72,7 +72,6 @@ public:
     bool checkIfStringIsPalindrome(string s)
     {
         int length = s.length();
-
         for (int i = 0; i <= s.length() / 2; i++)
         {
             if (s[i] != s[s.length() - 1 - i])
