@@ -19,7 +19,7 @@ public:
             int j = 1;
             
             // Two letter unfolding
-            if (i == j < s.length()) 
+            if ((i + j) < s.length()) 
             {
                 string twoLetterUnfold = palindrome + s[j];
                 if (checkIfStringIsPalindrome(twoLetterUnfold)) 
@@ -92,6 +92,7 @@ int main()
     std::cout << s.longestPalindrome("racecar") << endl;
     std::cout << s.longestPalindrome("The eht") << endl;
     std::cout << s.longestPalindrome("cbbd") << endl;
+    std::cout << s.longestPalindrome("babad") << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
