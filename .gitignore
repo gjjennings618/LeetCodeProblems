@@ -22,3 +22,5 @@ LongestSubstring/x64/Debug/LongestSubstring.pdb
 *.log
 *.idb
 *.pdb
+/LongestPalindromicSubstr/.vs
+*.obj
