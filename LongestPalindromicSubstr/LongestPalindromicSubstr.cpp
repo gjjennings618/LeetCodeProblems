@@ -15,50 +15,69 @@ public:
             return s;
         }
 
-        for (int i = 1; i < s.length(); i++)
+        for (int i = 0; i < s.length(); i++)
         {
-            palindrome = tolower(s[i]);
+            palindrome = s[i];
             bool hasLetters = true;
             bool isPalindrome = true;
 
             int j = 1;
-            
-            // Two letter unfolding
-            if ((i + j) < s.length()) 
+
+            // Find base string
+            string basePalindrome = palindrome;
+            int k;
+            for (k = i + 1; k < s.length() && isPalindrome; k++)
             {
-                string twoLetterUnfold = palindrome + s[i + j];
-                if (checkIfStringIsPalindrome(twoLetterUnfold)) 
+                basePalindrome += s[k];
+
+                if (!checkIfStringIsPalindrome(basePalindrome))
                 {
-                    palindrome = twoLetterUnfold;
+                    isPalindrome = false;
+                }
+                else 
+                {
+                    palindrome = basePalindrome;
                 }
             }
+
+            int l = palindrome.length() + i - 1;
+            cout << "Base String: " << palindrome << "; Base str.length(): "  << palindrome.length() << endl;
+            cout << "i: " << i << "; l: " << l << "; j: " << j << endl;
+            isPalindrome = true;
 
             while (hasLetters && isPalindrome)
             {
                 string temp_palindrome = "";
-
                 if ((i - j) >= 0)
                 {
-                    temp_palindrome += tolower(s[i - j]);
+                    cout << "Prepend: " << s[i - j] << endl;
+                    temp_palindrome += s[i - j];
                 }
 
                 temp_palindrome += palindrome;
 
-                if ((i + j) < s.length())
+                if (l + j < s.length())
                 {
-                    temp_palindrome += tolower(s[i + j]);
+                    cout << "Append: " << s[l + j] << endl;
+                    temp_palindrome += s[l + j];
                 }
 
+                cout << "Precheck: " << temp_palindrome << endl;
+
                 isPalindrome = checkIfStringIsPalindrome(temp_palindrome);
-                hasLetters = checkIfStringHasRemainingLetters(s.length(), i, j);
+                hasLetters = checkIfStringHasRemainingLetters(s.length(), i, j, l);
 
                 if (isPalindrome)
                 {
                     palindrome = temp_palindrome;
                 }
 
+                cout << temp_palindrome << endl;
+
                 j++;
             }
+
+            cout << "Inner Palindrome: " + palindrome << endl;
 
             if (palindrome.length() > longest_palindrome.length())
             {
@@ -69,9 +88,9 @@ public:
         return longest_palindrome;
     }
 
-    bool checkIfStringHasRemainingLetters(int length, int i, int j)
+    bool checkIfStringHasRemainingLetters(int length, int i, int j, int k)
     {
-        return (((i - j) > 0) || (i + j < length));
+        return (((i - j) >= 0) || (k + j < length));
     }
 
     bool checkIfStringIsPalindrome(string s)
@@ -93,11 +112,26 @@ public:
 int main()
 {
     Solution s;
-    std::cout << s.longestPalindrome("oifiifsss") << endl;
-    std::cout << s.longestPalindrome("racecar") << endl;
-    std::cout << s.longestPalindrome("The eht") << endl;
-    std::cout << s.longestPalindrome("cbbd") << endl;
-    std::cout << s.longestPalindrome("babad") << endl;
+    std::cout << "SPELL: oifiifssss" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("oifiifssss") << endl << endl;
+
+    std::cout << "SPELL: racecar" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("racecar") << endl << endl;
+
+    std::cout << "SPELL: The eht" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("The eht") << endl << endl;
+
+    std::cout << "SPELL: cbbd" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("cbbd") << endl << endl;
+
+    std::cout << "SPELL: ccc" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("ccc") << endl << endl;
+
+    std::cout << "SPELL: babad" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("babad") << endl << endl;
+
+    std::cout << "SPELL: SQQSYYSQQS" << endl;
+    std::cout << "FRISBEE: " + s.longestPalindrome("SQQSYYSQQS") << endl << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
