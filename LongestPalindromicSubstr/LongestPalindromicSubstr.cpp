@@ -72,6 +72,11 @@ public:
                     palindrome = temp_palindrome;
                 }
 
+                if (isPalindrome)
+                {
+                    palindrome = temp_palindrome;
+                }
+
                 cout << temp_palindrome << endl;
 
                 j++;
