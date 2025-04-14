@@ -1,10 +1,9 @@
 // ZigzagConversion.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-// 
-
 #include <iostream>
 #include <string>
+#include <stdexcept> // Add this include for std::exception
 
 using namespace std;
 
@@ -14,17 +13,53 @@ public:
 
         string output = "";
 
-        for (int i = 0; i < numRows; i++) 
+        for (int i = 0; i < s.length(); i += numRows)
         {
-            for (int j = i; j < s.length(); j += numRows)
+            output += s[i];
+        }
+        
+        for (int i = 0; i < s.length(); i += numRows)
+        {
+            try 
             {
-                cout << s[j] << " ";
-                output += s[j];
+                output += expandIn(s.substr(i + 1, numRows - 1));
             }
-            cout << endl;
+            catch (exception e) 
+            {
+                cout << "OoB" << endl;
+            }
         }
 
         return output;
+    }
+
+    string expandIn(string s)
+    {
+        string output = ""; 
+
+        if (s.length() > 2) 
+        {
+            int length = s.length()-2;
+            output += s[0];
+            output += s[s.length() - 1];
+            output += expandIn(s.substr(1, length));
+            return output;
+        }
+        else if (s.length() == 2) 
+        {
+            output += s[0];
+            output += s[1];
+            return output;
+        }
+        else if (s.length() == 1) 
+        {
+            output += s[0];
+            return output;
+        }
+        else // theoretically shouldn't happen
+        {
+            return output;
+        }
     }
 };
 
