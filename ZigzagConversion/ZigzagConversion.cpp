@@ -4,62 +4,44 @@
 #include <iostream>
 #include <string>
 #include <stdexcept> // Add this include for std::exception
+#include <unordered_map>
 
 using namespace std;
 
 class Solution {
 public:
-    string convert(string s, int numRows) {
 
+    string convert(string s, int numRows) 
+    {
         string output = "";
 
-        for (int i = 0; i < s.length(); i += numRows)
+        unordered_map<int, string> layers;
+
+        for (int i = 0; i < numRows; i++) 
         {
-            output += s[i];
+            string layer;
+            layers.insert(make_pair(i, layer));
         }
-        
-        for (int i = 0; i < s.length(); i += numRows)
+
+        int j = 0;
+        for (int i = 0; i < s.length(); i++) 
         {
-            try 
+            if (j == numRows) 
             {
-                output += expandIn(s.substr(i + 1, numRows - 1));
+                j = 0;
             }
-            catch (exception e) 
-            {
-                cout << "OoB" << endl;
-            }
+
+            layers[j] += s[i];
+        }
+
+        // layer is a <int, string>
+        for (auto& layer : layers) 
+        {
+            // First is key; second is value
+            output += layer.second;
         }
 
         return output;
-    }
-
-    string expandIn(string s)
-    {
-        string output = ""; 
-
-        if (s.length() > 2) 
-        {
-            int length = s.length()-2;
-            output += s[0];
-            output += s[s.length() - 1];
-            output += expandIn(s.substr(1, length));
-            return output;
-        }
-        else if (s.length() == 2) 
-        {
-            output += s[0];
-            output += s[1];
-            return output;
-        }
-        else if (s.length() == 1) 
-        {
-            output += s[0];
-            return output;
-        }
-        else // theoretically shouldn't happen
-        {
-            return output;
-        }
     }
 };
 
