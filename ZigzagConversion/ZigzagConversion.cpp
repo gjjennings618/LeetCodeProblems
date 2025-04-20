@@ -51,6 +51,8 @@ int main()
     Solution s;
 
     cout << s.convert("PAYPALISHIRING", 4) << endl;
+    cout << s.convert("PAYPALISHIRING", 3) << endl;
+    cout << s.convert("PAYPALISHIRING", 2) << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
