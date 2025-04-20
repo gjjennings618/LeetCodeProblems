@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdexcept> // Add this include for std::exception
-#include <unordered_map>
+#include <map>
+#include <cmath>
 
 using namespace std;
 
@@ -13,9 +14,14 @@ public:
 
     string convert(string s, int numRows) 
     {
+        if (numRows == 1) 
+        {
+            return s;
+        }
+
         string output = "";
 
-        unordered_map<int, string> layers;
+        map<int, string> layers;
 
         for (int i = 0; i < numRows; i++) 
         {
@@ -26,12 +32,12 @@ public:
         int j = 0;
         for (int i = 0; i < s.length(); i++) 
         {
-            if (j == numRows) 
+            if (j == numRows - 1) 
             {
-                j = 0;
+                j *= -1;
             }
 
-            layers[j] += s[i];
+            layers[abs(j)] += s[i];
             j++;
         }
 
