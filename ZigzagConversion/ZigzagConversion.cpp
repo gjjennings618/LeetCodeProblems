@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <stdexcept> // Add this include for std::exception
-#include <map>
+#include <vector>
 #include <cmath>
 
 using namespace std;
@@ -12,21 +11,21 @@ using namespace std;
 class Solution {
 public:
 
-    string convert(string s, int numRows) 
+    string convert(string s, const int numRows) 
     {
         if (numRows == 1) 
         {
             return s;
         }
 
-        string output = "";
+        vector<string> layers;
 
-        map<int, string> layers;
+        string output = "";
 
         for (int i = 0; i < numRows; i++) 
         {
             string layer;
-            layers.insert(make_pair(i, layer));
+            layers.push_back(layer);
         }
 
         int j = 0;
@@ -42,10 +41,9 @@ public:
         }
 
         // layer is a <int, string>
-        for (auto& layer : layers) 
+        for (string layer : layers)
         {
-            // First is key; second is value
-            output += layer.second;
+            output += layer;
         }
 
         return output;
