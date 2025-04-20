@@ -32,6 +32,7 @@ public:
             }
 
             layers[j] += s[i];
+            j++;
         }
 
         // layer is a <int, string>
