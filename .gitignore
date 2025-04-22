@@ -26,3 +26,6 @@ LongestSubstring/x64/Debug/LongestSubstring.pdb
 *.obj
 /LongestPalindromicSubstr/enc_temp_folder
 /LongestPalindromicSubstr/enc_temp_folder
+*.ipch
+/ZigzagConversion/.vs/ZigzagConversion/v17
+*.exe
