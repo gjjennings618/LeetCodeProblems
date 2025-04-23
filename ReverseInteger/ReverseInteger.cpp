@@ -11,9 +11,13 @@ class Solution {
 public:
     int reverse(int x) {
            
+        if (x >= INT_MAX || x <= INT_MIN) 
+        {
+            return 0;
+        }
+
         vector<int> digit_list;
-           
-        // Handle negative numbers
+
         bool is_negative = x < 0;
         x = abs(x);
         int output = 0;
@@ -28,10 +32,16 @@ public:
         {
             for (int i = 0; i < digit_list.size(); i++)
             {
-                output += digit_list[i] * pow(10, digit_list.size() - 1 - i);
+                if (output + digit_list[i] * pow(10, digit_list.size() - 1 - i) < INT_MAX) {
+                    output += digit_list[i] * pow(10, digit_list.size() - 1 - i);
+                }
+                else 
+                {
+                    return 0;
+                }
             }
                
-            if (output > INT_MAX) {
+            if (output >= INT_MAX) {
                 return 0;
             }
         }
@@ -51,8 +61,11 @@ public:
 int main()
 {
     Solution solution;
-    int number = 123;
-    cout << "Reversed: " << solution.reverse(number) << endl;
+
+    cout << INT_MIN << endl;
+    cout << "Reversed: " << solution.reverse(123) << endl;
+    cout << "Reversed: " << solution.reverse(-2147483648) << endl;
+
 
     return 0;
 }
