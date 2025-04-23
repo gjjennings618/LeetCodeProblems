@@ -29,3 +29,4 @@ LongestSubstring/x64/Debug/LongestSubstring.pdb
 *.ipch
 /ZigzagConversion/.vs/ZigzagConversion/v17
 *.exe
+/ReverseInteger/.vs
