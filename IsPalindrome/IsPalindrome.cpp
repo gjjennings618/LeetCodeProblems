@@ -14,8 +14,8 @@ public:
         // I do not populate deq if the passed int is equal to zero. Zero is a palindrome though
         if (x == 0) return true;
 
-        // Negative numbers cannot be a palindrome as stated by rules
-        if (x < 0) return false;
+        // Negative numbers and numbers ending in 0 cannot be a palindrome as stated by rules
+        if (x < 0 || x%10==0) return false;
 
         deque<int> deq;
         
