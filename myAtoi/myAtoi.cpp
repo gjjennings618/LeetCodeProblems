@@ -92,10 +92,13 @@ public:
             }
             else 
             {
-                if ( (output = output*10 + (s[i]-'0')) > INT_MAX) 
+                int value = s[i] - '0';
+
+                if (output > (INT_MAX - value) / 10)
                 {
                     return (sign == signedness::positive) ? INT_MAX : INT_MIN;
                 }
+                output = output * 10 + value;
                 i++;
             }
         }
