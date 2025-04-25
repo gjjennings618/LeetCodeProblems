@@ -75,9 +75,8 @@ public:
             }
         }
 
-        regex pattern("[0-9]");
 
-        if (i >= s.length() || !regex_match(string(1, s[i]), pattern))
+        if (i >= s.length() || !isDigit(s[i]))
         {
             return 0;
         }
@@ -86,7 +85,7 @@ public:
         bool onlyNumbers = true;
         while (i < s.length() && onlyNumbers) 
         {
-            if (!regex_match(string(1, s[i]), pattern)) 
+            if (!isDigit(s[i]))
             {
                 onlyNumbers = false;
             }
@@ -104,6 +103,11 @@ public:
         }
 
         return (sign == signedness::positive) ? output : -output;
+    }
+
+    bool isDigit(char c) 
+    {
+        return c >= '0' && c <= '9';
     }
 };
 
