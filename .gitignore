@@ -31,3 +31,5 @@ LongestSubstring/x64/Debug/LongestSubstring.pdb
 *.exe
 /ReverseInteger/.vs
 /IsPalindrome/.vs
+/myAtoi/.vs
+
