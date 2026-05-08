@@ -33,3 +33,4 @@ LongestSubstring/x64/Debug/LongestSubstring.pdb
 /IsPalindrome/.vs
 /myAtoi/.vs
 
+*.opendb
